@@ -67,7 +67,27 @@ public class EmployeeController {
         }
     }
 
-    @PatchMapping("/employees/{id}")
-    
+    // @PatchMapping("/employees/{id}")
+    // public boolean update(String id, String key, String value) {
+
+    //     Optional<Employee> optional = repository.findById(id);
+
+    //     if (optional.isPresent()) {
+    //         Employee emp = optional.get();
+
+    //         if (key.equalsIgnoreCase("login")) {
+    //             emp.setLogin(value);
+    //         }
+    //         if (key.equalsIgnoreCase("name")) {
+    //             emp.setName(value);
+    //         }
+    //         if (key.equalsIgnoreCase("salary")) {
+    //             emp.setSalary(Float.parseFloat(value));
+    //         }
+    //         repository.save(emp);
+    //     }
+    //     return true;
+    // }
+
 
 }
