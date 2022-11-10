@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,10 +13,16 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.fge.jsonpatch.JsonPatch;
+import com.github.fge.jsonpatch.JsonPatchException;
 import com.ryandevelopments.salarymanagement.model.Employee;
 import com.ryandevelopments.salarymanagement.repository.EmployeeRepository;
 
@@ -24,6 +32,8 @@ public class EmployeeController {
 
     @Autowired
     EmployeeRepository employeeRepository;
+
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     @GetMapping("/employees")
     public ResponseEntity<List<Employee>> getAllEmployees(@RequestParam(required = false) String name) {
@@ -42,7 +52,7 @@ public class EmployeeController {
             return new ResponseEntity<>(employees, HttpStatus.OK);
 
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -63,31 +73,27 @@ public class EmployeeController {
             employeeRepository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
-    // @PatchMapping("/employees/{id}")
-    // public boolean update(String id, String key, String value) {
+    @PatchMapping(path = "/employees/{id}", consumes = "application/json")
+    public ResponseEntity<Employee> updateEmployee(@PathVariable String id, @RequestBody JsonPatch patch){
+        try {
+            Employee employee = employeeRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+            Employee employeePatched = patchEmployee(employee, patch);
+            employeeRepository.save(employeePatched);
+            return ResponseEntity.ok(employeePatched);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } catch (JsonPatchException | JsonProcessingException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 
-    //     Optional<Employee> optional = repository.findById(id);
+    public Employee patchEmployee(Employee employee, JsonPatch jsonPatch) throws JsonPatchException, JsonProcessingException {
+        JsonNode patched = jsonPatch.apply(objectMapper.convertValue(employee, JsonNode.class));
 
-    //     if (optional.isPresent()) {
-    //         Employee emp = optional.get();
-
-    //         if (key.equalsIgnoreCase("login")) {
-    //             emp.setLogin(value);
-    //         }
-    //         if (key.equalsIgnoreCase("name")) {
-    //             emp.setName(value);
-    //         }
-    //         if (key.equalsIgnoreCase("salary")) {
-    //             emp.setSalary(Float.parseFloat(value));
-    //         }
-    //         repository.save(emp);
-    //     }
-    //     return true;
-    // }
-
-
+        return objectMapper.treeToValue(patched, Employee.class);
+    }
 }
