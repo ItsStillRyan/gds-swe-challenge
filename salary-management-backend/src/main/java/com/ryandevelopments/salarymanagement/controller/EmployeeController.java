@@ -35,7 +35,7 @@ public class EmployeeController {
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
-    @GetMapping("/employees")
+    @GetMapping("/users")
     public ResponseEntity<List<Employee>> getAllEmployees(@RequestParam(required = false) String name) {
         try {
             List<Employee> employees = new ArrayList<Employee>();
@@ -56,7 +56,7 @@ public class EmployeeController {
         }
     }
 
-    @GetMapping("/employees/{id}")
+    @GetMapping("/users/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") String id) {
         Optional<Employee> employeeData = employeeRepository.findById(id);
 
@@ -67,7 +67,7 @@ public class EmployeeController {
         }
     }
 
-    @DeleteMapping("/employees/{id}")
+    @DeleteMapping("/users/{id}")
     public ResponseEntity<HttpStatus> deleteEmployee(@PathVariable("id") String id){
         try {
             employeeRepository.deleteById(id);
@@ -77,7 +77,7 @@ public class EmployeeController {
         }
     }
 
-    @PatchMapping(path = "/employees/{id}", consumes = "application/json")
+    @PatchMapping(path = "/users/{id}", consumes = "application/json")
     public ResponseEntity<Employee> updateEmployee(@PathVariable String id, @RequestBody JsonPatch patch){
         try {
             Employee employee = employeeRepository.findById(id).orElseThrow(EntityNotFoundException::new);

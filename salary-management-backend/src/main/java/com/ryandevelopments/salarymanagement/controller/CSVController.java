@@ -20,7 +20,7 @@ public class CSVController {
     @Autowired
     CSVService filService;
 
-    @PostMapping("/employees/csvupload")
+    @PostMapping("/users/upload")
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file){
         String message = "";
 
