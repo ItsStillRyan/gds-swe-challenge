@@ -10,16 +10,14 @@ import { SearchComponent } from './component/search/search.component';
 import { SearchBarComponent } from './component/search-bar/search-bar.component';
 import { SearchFilterComponent } from './component/search-filter/search-filter.component';
 import { UsersComponent } from './component/users/users.component';
-import { UserListComponent } from './component/user-list/user-list.component';
-import { UsersPaginationComponent } from './component/users-pagination/users-pagination.component';
 import { RouterModule, Routes } from '@angular/router';
 import { UserDetailsComponent } from './component/user-details/user-details.component';
 import { MaterialModule } from './material/material.module';
 import { NavbarComponent } from './component/navbar/navbar.component';
+import { UserListComponent } from './component/user-list/user-list.component';
 
 const route: Routes = [
   {path: '', redirectTo: 'users', pathMatch: 'full'},
-  {path: 'users', component:UserListComponent},
   {path: 'users/:id', component: UserDetailsComponent}
 ]
 
@@ -30,9 +28,8 @@ const route: Routes = [
     SearchBarComponent,
     SearchFilterComponent,
     UsersComponent,
-    UserListComponent,
-    UsersPaginationComponent,
     NavbarComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,

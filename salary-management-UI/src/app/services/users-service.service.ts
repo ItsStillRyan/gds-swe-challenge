@@ -15,7 +15,6 @@ export class UsersServiceService {
   getAll(): Observable<User[]> {
     return this.http.get<User[]>(baseUrl)
   }
-
   get(id: any): Observable<User> {
     return this.http.get(`${baseUrl}/${id}`)
   }
