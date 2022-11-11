@@ -1,17 +1,21 @@
 .nav-container {
-    height: 100vh;
-  }
-  
-  .nav-content {
-    height: 100%;
-    align-items: center;
-  }
-  
-  .sidenav {
-    padding: 20px;
-    background-color:orange;
-    width: 300px;
-    text-align: center;
-  }
+  height: 100vh;
+}
 
-  
+.nav-content {
+  height: 100%;
+}
+
+.sidenav {
+  padding: 20px;
+  background-color: #6182ed;
+  width: 200px;
+  text-align: center;
+}
+
+.nav-logo {
+  margin-top: 45vh;
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+}

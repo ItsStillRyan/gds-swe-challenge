@@ -1,28 +1,70 @@
-<mat-table #table [dataSource]="dataSource">
-  <ng-container matColumnDef="Id">
-    <mat-header-cell *matHeaderCellDef> Id. </mat-header-cell>
-    <mat-cell *matCellDef="let user"> {{ user.id }} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="Login">
-    <mat-header-cell *matHeaderCellDef> Login </mat-header-cell>
-    <mat-cell *matCellDef="let user"> {{ user.login }} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="Name">
-    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-    <mat-cell *matCellDef="let user"> {{ user.name }} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="Salary">
-    <mat-header-cell *matHeaderCellDef> Salary </mat-header-cell>
-    <mat-cell *matCellDef="let user"> {{ user.salary }} </mat-cell>
-  </ng-container>
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Filter </mat-panel-title>
+    </mat-expansion-panel-header>
 
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-</mat-table>
-<mat-paginator
-  #paginator
-  [pageSize]="10"
-  [pageSizeOptions]="[5, 10, 20]"
-  [showFirstLastButtons]="true"
->
-</mat-paginator>
+    <div class="nested-filter-container">
+      <p>By Salary range:</p>
+
+      <mat-form-field>
+        <input matInput placeholder="Minimum" formControlName="minimum" />
+      </mat-form-field>
+
+      <p>to</p>
+
+      <mat-form-field>
+        <input matInput placeholder="Maximum" formControlName="maximum" />
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        class="nested-filter-button"
+        (click)="applyFilter()"
+      >
+        Submit
+      </button>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<div class="user-list-table">
+  <mat-table #table [dataSource]="dataSource" matSort>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let users"> {{ users.id }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="login">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        LOGIN
+      </mat-header-cell>
+      <mat-cell *matCellDef="let users"> {{ users.login }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        NAME
+      </mat-header-cell>
+      <mat-cell *matCellDef="let users"> {{ users.name }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="salary">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        SALARY
+      </mat-header-cell>
+      <mat-cell *matCellDef="let users"> {{ users.salary }} </mat-cell>
+    </ng-container>
+  </mat-table>
+
+  <mat-paginator
+    #paginator
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10]"
+    [showFirstLastButtons]="true"
+  >
+  </mat-paginator>
+</div>

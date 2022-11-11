@@ -1,0 +1,19 @@
+.user-list-table{
+  padding: 2% 5% 0 5%;
+}
+
+
+.nested-filter-container p{
+  padding: 20px 20px 0 20px ;
+}
+
+.nested-filter-container{
+  display: flex;
+}
+
+.nested-filter-button{
+  margin: 10px 0 0 3%;
+  height:70%;
+}
+
+

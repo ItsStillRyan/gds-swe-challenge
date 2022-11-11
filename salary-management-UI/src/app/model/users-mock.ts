@@ -11,25 +11,25 @@ export const USERS: User[] = [
         id: 'ABC123',
         login: 'logintan',
         name:'tan',
-        salary: 1400
+        salary: 45645
     },
     {
         id: 'ABC123',
         login: 'logintan',
         name:'tan',
-        salary: 1400
+        salary: 456456
     },
     {
         id: 'ABC123',
         login: 'logintan',
         name:'tan',
-        salary: 1400
+        salary: 786768
     },
     {
         id: 'ABC123',
         login: 'logintan',
         name:'tan',
-        salary: 1400
+        salary: 12312
     },
     {
         id: 'ABC123',

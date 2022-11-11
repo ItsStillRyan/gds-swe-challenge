@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../models/user.model';
+import { User } from '../model/User';
 
-const baseUrl = 'http://localhost:8080/api/employees';
+const baseUrl = 'http://localhost:8080/api/users';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class UsersServiceService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<User[]> {
-    return this.http.get<User[]>(baseUrl)
+    return this.http.get<User[]>(`${baseUrl}/`)
   }
   get(id: any): Observable<User> {
     return this.http.get(`${baseUrl}/${id}`)
