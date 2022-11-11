@@ -1,0 +1,22 @@
+.nav-container {
+    height: 100vh;
+  }
+  
+  .nav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sidenav {
+    padding: 20px;
+    background-color:orange;
+    width: 300px;
+    text-align: center;
+  }
+
+  .top-nav{
+    background-color: aliceblue;
+  }
+  
