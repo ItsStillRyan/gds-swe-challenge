@@ -27,15 +27,18 @@ public class CSVhelper {
 
     public static List<Employee> csvToEmployees(InputStream inS){
 
-        CSVFormat.DEFAULT.builder();
-        try (BufferedReader filReader = new BufferedReader(new InputStreamReader(inS, StandardCharsets.UTF_8));
-
-        CSVParser csvParser = new CSVParser(filReader,  
+        try (BufferedReader fileReader = new BufferedReader(new InputStreamReader(inS, StandardCharsets.UTF_8));
+        CSVParser csvParser = new CSVParser(fileReader,  
         CSVFormat.RFC4180.builder()
         .setHeader()
         .setSkipHeaderRecord(true)
         .setIgnoreHeaderCase(true)
-        .setTrim(true).build());){
+        .setAllowMissingColumnNames(false)
+        .setCommentMarker('#')
+        .setIgnoreEmptyLines(true)
+        .setIgnoreSurroundingSpaces(true)
+        .setTrim(true)
+        .build());){
             
             List<Employee> employees = new ArrayList<Employee>();
             

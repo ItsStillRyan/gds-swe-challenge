@@ -1,70 +1,87 @@
-<mat-accordion>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title> Filter </mat-panel-title>
-    </mat-expansion-panel-header>
+<div class="user-list-container">
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Filter </mat-panel-title>
+      </mat-expansion-panel-header>
 
-    <div class="nested-filter-container">
-      <p>By Salary range:</p>
+      <div class="nested-filter-container">
+        <p>By Salary range:</p>
 
-      <mat-form-field>
-        <input matInput placeholder="Minimum" formControlName="minimum" />
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Minimum" formControlName="minimum" />
+        </mat-form-field>
 
-      <p>to</p>
+        <p>to</p>
 
-      <mat-form-field>
-        <input matInput placeholder="Maximum" formControlName="maximum" />
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Maximum" formControlName="maximum" />
+        </mat-form-field>
 
-      <button
-        mat-raised-button
-        class="nested-filter-button"
-        (click)="applyFilter()"
-      >
-        Submit
-      </button>
-    </div>
-  </mat-expansion-panel>
-</mat-accordion>
+        <button
+          mat-raised-button
+          class="nested-filter-button"
+          (click)="applyFilter()"
+        >
+          Submit
+        </button>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
 
-<div class="user-list-table">
-  <mat-table #table [dataSource]="dataSource" matSort>
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  <div class="user-list-table">
+    <mat-table #table [dataSource]="dataSource" matSort>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-      <mat-cell *matCellDef="let users"> {{ users.id }} </mat-cell>
-    </ng-container>
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          ID
+        </mat-header-cell>
+        <mat-cell *matCellDef="let users"> {{ users.id }} </mat-cell>
+      </ng-container>
 
-    <ng-container matColumnDef="login">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        LOGIN
-      </mat-header-cell>
-      <mat-cell *matCellDef="let users"> {{ users.login }} </mat-cell>
-    </ng-container>
+      <ng-container matColumnDef="login">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          LOGIN
+        </mat-header-cell>
+        <mat-cell *matCellDef="let users"> {{ users.login }} </mat-cell>
+      </ng-container>
 
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        NAME
-      </mat-header-cell>
-      <mat-cell *matCellDef="let users"> {{ users.name }} </mat-cell>
-    </ng-container>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          NAME
+        </mat-header-cell>
+        <mat-cell *matCellDef="let users"> {{ users.name }} </mat-cell>
+      </ng-container>
 
-    <ng-container matColumnDef="salary">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>
-        SALARY
-      </mat-header-cell>
-      <mat-cell *matCellDef="let users"> {{ users.salary }} </mat-cell>
-    </ng-container>
-  </mat-table>
+      <ng-container matColumnDef="salary">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          SALARY
+        </mat-header-cell>
+        <mat-cell *matCellDef="let users"> {{ users.salary }} </mat-cell>
+      </ng-container>
 
-  <mat-paginator
-    #paginator
-    [pageSize]="10"
-    [pageSizeOptions]="[5, 10]"
-    [showFirstLastButtons]="true"
-  >
-  </mat-paginator>
+      <ng-container matColumnDef="delete" class="tabledelete">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let users">
+          <button
+            mat-icon-button
+            color="warn"
+            (click)="confirmDialog(users.id)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+    </mat-table>
+
+    <mat-paginator
+      #paginator
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10]"
+      [showFirstLastButtons]="true"
+    >
+    </mat-paginator>
+  </div>
 </div>

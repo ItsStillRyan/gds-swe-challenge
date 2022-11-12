@@ -1,0 +1,9 @@
+<mat-dialog-content>
+  <p>Confirm Delete?</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Return</button>
+  <button mat-button color="warn" (click)="onNoClick()" cdkFocusInitial>
+    Delete
+  </button>
+</mat-dialog-actions>

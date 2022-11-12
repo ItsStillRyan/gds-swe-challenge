@@ -5,17 +5,17 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UsersComponent } from './component/users/users.component';
 import { MaterialModule } from './material/material.module';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { UserListComponent } from './component/user-list/user-list.component';
+import { DialogConfirmComponent } from './component/dialog-confirm/dialog-confirm.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsersComponent,
     NavbarComponent,
     UserListComponent,
+    DialogConfirmComponent,
   ],
   imports: [
     BrowserModule,

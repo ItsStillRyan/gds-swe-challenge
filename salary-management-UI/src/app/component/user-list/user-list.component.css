@@ -1,19 +1,36 @@
-.user-list-table{
+.user-list-container{
+  background-color: #dbe2ed;
+  height: 100vh;
+}
+
+.user-list-table {
   padding: 2% 5% 0 5%;
 }
 
-
-.nested-filter-container p{
-  padding: 20px 20px 0 20px ;
+.nested-filter-container p {
+  padding: 20px 20px 0 20px;
 }
 
-.nested-filter-container{
+.nested-filter-container {
   display: flex;
 }
 
-.nested-filter-button{
+.nested-filter-button {
   margin: 10px 0 0 3%;
-  height:70%;
+  height: 70%;
 }
 
+.tabledelete {
+  border: 5px solid black;
+  display: block;
+}
 
+.mat-column-select {
+  overflow: visible;
+}
+
+@media screen and (max-width: 730px) {
+  .nested-filter-container {
+    flex-direction: column;
+  }
+}
