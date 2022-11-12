@@ -49,7 +49,7 @@ public class CSVhelper {
                     csvRecord.get("Id"),
                     csvRecord.get("Login"),
                     csvRecord.get("Name"),
-                    Float.parseFloat(csvRecord.get("Salary"))
+                    Double.parseDouble(csvRecord.get("Salary"))
                 );
                 employees.add(employee);
             }

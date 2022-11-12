@@ -1,6 +1,14 @@
 package com.ryandevelopments.salarymanagement.model;
 import javax.persistence.*;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
+@Builder
+
 @Entity
 @Table(name= "employee")
 public class Employee {
@@ -16,11 +24,11 @@ public class Employee {
     private String name;
 
     @Column(name = "salary")
-    private float salary;
+    private double salary;
 
     public Employee(){}
 
-    public Employee(String id, String login, String name, float salary){
+    public Employee(String id, String login, String name, double salary){
         this.id = id;
         this.login = login;
         this.name = name;
@@ -51,11 +59,11 @@ public class Employee {
         this.name = name;
     }
 
-    public float getSalary() {
+    public double getSalary() {
         return salary;
     }
 
-    public void setSalary(float salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
     }
 
