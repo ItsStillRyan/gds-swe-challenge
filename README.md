@@ -1,9 +1,9 @@
 ![logosalaries](/README-assets/logosalaries.png)
 ## GDS SWE Challenge and Assignment for TOPPAN 
-***
+
 
 ## **Context**
-___
+
 ### _Opening Statement & Summary_
 
 You’re on a mission to help our HR dept build an MVP employee salary management webapp
@@ -20,7 +20,6 @@ No live demo for this project.
 ___
 ## **Content: Chosen User Stories**
 
-___
 ### USER STORY 1 (Backend)
 
 Using these data to populate .csv file:
@@ -89,7 +88,6 @@ ___
 
 ___
 ## **Local Build**
-___
 ### Spring Boot
 1. Build Project
 ```
