@@ -54,7 +54,6 @@ http://localhost:4200/users
 You will be greeted with the homepage.
 ![homepage](/README-assets/US2-1.jpg)
 ### USER STORY 3
-I will not be submitting this User Story but CRUD implementation is part of my workflow in creating the back end. Thus it exists and works but not implemented in front-end.
 
 ***C***reate
 
