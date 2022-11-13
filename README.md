@@ -86,6 +86,8 @@ ___
 
 2. Attempted but unable to implement a Salary range filter in Webpage.
 
+
+3. Edit function to be enabled in front-end for individual users
 ___
 ## **Local Build**
 ### Spring Boot
