@@ -14,7 +14,6 @@ This assignment is done using:
 * Angular 14
 
 ## Demo
-___
 No live demo for this project.
 
 ___
@@ -128,4 +127,16 @@ ___
 ```
 ng serve
 ```
-
+___
+## Technologies Used
+- Springboot
+  - starter
+  - data-keyvalue
+  - web
+  - data
+  - jdbc
+- Mysql 
+- Commons CSV
+- JSONPatch
+- lombok
+- assertJ
