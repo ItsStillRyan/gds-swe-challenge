@@ -54,7 +54,6 @@ You will be greeted with the homepage.
 ![homepage](/README-assets/US2-1.jpg)
 ### USER STORY 3
 
-
 ***C***reate
 
 - As shown in USER STORY 1, creating users via CSV file
