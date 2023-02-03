@@ -63,20 +63,18 @@ You will be greeted with the homepage.
 
 
 ***U***pdate
-```
-PATCH http://localhost:8080/api/users/e0001
-```
-Using JSONPATCH dependency to effeciently carry out PATCH
-```
-[{
-    "op": "replace", 
-    "path": "/name",
-    "value": "Barry Bobber"
-}]
-```
-![PATCH in postman](/README-assets/US3-1.jpg)
+![update1](/README-assets/US3-1.jpg)
+- On Main Page, click on the edit button, a Dialog will pop up with the fields that are editable.
+
+![update2](/README-assets/US3-2.jpg)
+- After clicking Save, the list will be updated automatically.
+
 ***D***elete
-- As shown in picture, delete() displaying as a logo, will be asked to confirm deletion upon click.
+![delete1](/README-assets/US4-1.jpg)
+- On Main Page, click on the delete button, a Dialog will pop up asking for a confirmation for delete.
+
+![delete2](/README-assets/US4-2.jpg)
+- After clicking delete, the list will be updated automatically.
 ___
 ## **Bugs or Features to be implemented**
 1. ```.setAllowMissingColumnNames``` not working as intended in CSVFormat builder. Empty columns submitted into csv POST will appear as " " or value 0 in DB
