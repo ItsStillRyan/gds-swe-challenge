@@ -63,7 +63,7 @@
       </ng-container>
 
       <ng-container matColumnDef="delete" class="tabledelete">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Delete</mat-header-cell>
         <mat-cell *matCellDef="let users">
           <button
             mat-icon-button
@@ -74,6 +74,17 @@
           </button>
         </mat-cell>
       </ng-container>
+
+      <ng-container matColumnDef="update" class="tableupdate">
+        <mat-header-cell *matHeaderCellDef>Edit</mat-header-cell>
+        <mat-cell *matCellDef="let user">
+          <button mat-icon-button color="primary" (click)="openUpdateDialog(user)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+  
     </mat-table>
 
     <mat-paginator

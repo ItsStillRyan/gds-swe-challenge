@@ -9,6 +9,7 @@ import { MaterialModule } from './material/material.module';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { UserListComponent } from './component/user-list/user-list.component';
 import { DialogConfirmComponent } from './component/dialog-confirm/dialog-confirm.component';
+import { DialogEditComponent } from './component/dialog-edit/dialog-edit.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { DialogConfirmComponent } from './component/dialog-confirm/dialog-confir
     NavbarComponent,
     UserListComponent,
     DialogConfirmComponent,
+    DialogEditComponent,
   ],
   imports: [
     BrowserModule,
