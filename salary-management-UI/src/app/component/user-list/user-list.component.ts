@@ -57,7 +57,8 @@ export class UserListComponent implements OnInit {
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
         // Salary filter
-        this.dataSource.filterPredicate = (data, filter) => {
+        this.dataSource.filterPredicate = (data) => {
+          console.log(this.minimum, this.maximum)
           if (this.minimum && this.maximum) {
             console.log('filtered');
             return data.salary >= this.minimum && data.salary <= this.maximum;
@@ -72,7 +73,7 @@ export class UserListComponent implements OnInit {
 
   applyFilter() {
     console.log('triggered');
-    this.dataSource.filter = '' + Math.random();
+    this.dataSource.filter = this.minimum + '-' + this.maximum;
   }
 
   deleteUser(user: User) {
@@ -82,17 +83,40 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  updateUser(user: User) {
-    this.userService
-      .update(user.id, [
-        { op: 'replace', path: '/id', value: user.id},
-        { op: 'replace' ,path: '/login', value: user.login},
-        { op: 'replace', path: '/name', value: user.name },
-        { op: 'replace', path: '/salary', value: user.salary },
-      ])
-      .subscribe(() => {
+  editUser(user: User) {
+    const operations = [
+      {
+        op: 'replace',
+        path: '/id',
+        value: user.id
+      },
+      {
+        op: 'replace',
+        path: '/login',
+        value: user.login
+      },
+      {
+        op: 'replace',
+        path: '/name',
+        value: user.name
+      },
+      {
+        op: 'replace',
+        path: '/salary',
+        value: user.salary
+      }
+    ];
+
+    this.userService.update(user.id, operations).subscribe(
+      updatedUser => {
+        console.log(updatedUser);
+        // refresh the list of users
         this.retrieveUsers();
-      });
+      },
+      error => {
+        console.error(error);
+      }
+    );
   }
 
   confirmDialog(id): void {
@@ -108,14 +132,17 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  openUpdateDialog(user: User) {
+  openEditDialog(user: User) {
     const dialogRef = this.dialog.open(DialogEditComponent, {
-      data: { user },
+      width: '250px',
+      data: { user, userService: this.userService }
     });
-  
-    dialogRef.afterClosed().subscribe((result) => {
+
+    dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.updateUser(result);
+        this.userService.update(user.id, result).subscribe(() => {
+          this.retrieveUsers();
+        });
       }
     });
   }

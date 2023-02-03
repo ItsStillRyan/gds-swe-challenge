@@ -18,11 +18,35 @@ export class UsersServiceService {
   get(id: any): Observable<User> {
     return this.http.get(`${baseUrl}/${id}`)
   }
-  update(id: string, patch: any[]) {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.patch(`${baseUrl}/${id}`, { headers });
+  update(id: string, user: any) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    const url = `${baseUrl}/${user.id}`;
+    const body = [
+      {
+        "op": "replace",
+        "path": "/id",
+        "value": user.id
+      },
+      {
+        "op": "replace",
+        "path": "/login",
+        "value": user.login
+      },
+      {
+        "op": "replace",
+        "path": "/name",
+        "value": user.name
+      },
+      {
+        "op": "replace",
+        "path": "/salary",
+        "value": user.salary
+      }
+    ];
+    return this.http.patch<User>(url, body, { headers });
   }
-  delete(id: any): Observable<any>{
+
+  delete(id: any): Observable<any> {
     return this.http.delete(`${baseUrl}/${id}`)
   }
   findById(id: any): Observable<User[]> {

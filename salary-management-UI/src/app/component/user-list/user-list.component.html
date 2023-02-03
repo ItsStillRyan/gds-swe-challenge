@@ -1,32 +1,6 @@
 <div class="user-list-container">
   <mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title> Filter </mat-panel-title>
-      </mat-expansion-panel-header>
-
-      <div class="nested-filter-container">
-        <p>By Salary range:</p>
-
-        <mat-form-field>
-          <input matInput placeholder="Minimum" formControlName="minimum" />
-        </mat-form-field>
-
-        <p>to</p>
-
-        <mat-form-field>
-          <input matInput placeholder="Maximum" formControlName="maximum" />
-        </mat-form-field>
-
-        <button
-          mat-raised-button
-          class="nested-filter-button"
-          (click)="applyFilter()"
-        >
-          Submit
-        </button>
-      </div>
-    </mat-expansion-panel>
+   <app-filter></app-filter>
   </mat-accordion>
 
   <div class="user-list-table">
@@ -78,13 +52,13 @@
       <ng-container matColumnDef="update" class="tableupdate">
         <mat-header-cell *matHeaderCellDef>Edit</mat-header-cell>
         <mat-cell *matCellDef="let user">
-          <button mat-icon-button color="primary" (click)="openUpdateDialog(user)">
+          <button mat-icon-button color="primary" (click)="openEditDialog(user)">
             <mat-icon>edit</mat-icon>
           </button>
         </mat-cell>
       </ng-container>
 
-  
+
     </mat-table>
 
     <mat-paginator

@@ -10,6 +10,7 @@ import { NavbarComponent } from './component/navbar/navbar.component';
 import { UserListComponent } from './component/user-list/user-list.component';
 import { DialogConfirmComponent } from './component/dialog-confirm/dialog-confirm.component';
 import { DialogEditComponent } from './component/dialog-edit/dialog-edit.component';
+import { SalaryFilterComponent } from './component/salary-filter/salary-filter.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { DialogEditComponent } from './component/dialog-edit/dialog-edit.compone
     UserListComponent,
     DialogConfirmComponent,
     DialogEditComponent,
+    SalaryFilterComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, FormGroup } from '@angular/forms';
+import { UsersServiceService } from 'src/app/services/users-service.service';
 
 @Component({
   selector: 'app-dialog-edit',
@@ -8,9 +9,9 @@ import { FormControl, FormGroup } from '@angular/forms';
     <h1 mat-dialog-title>Edit User</h1>
     <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
       <mat-dialog-content>
-        <mat-form-field>
-          <input matInput placeholder="ID" formControlName="id" required />
-        </mat-form-field>
+        <!-- <mat-form-field>
+          <input matInput placeholder="ID" formControlName="id" />
+        </mat-form-field> -->
         <mat-form-field>
           <input
             matInput
@@ -48,7 +49,8 @@ export class DialogEditComponent {
 
   constructor(
     public dialogRef: MatDialogRef<DialogEditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private userService: UsersServiceService
   ) {
     this.editForm.setValue({
       id: data.user.id,
