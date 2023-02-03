@@ -1,1 +1,33 @@
-<p>salary-filter works!</p>
+<form [formGroup]="form">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      Filter
+    </mat-expansion-panel-header>
+
+    <div class="nested-filter-container">
+      <p>By Salary range:</p>
+
+      <mat-form-field>
+        <input matInput placeholder="Minimum" formControlName="minimum" />
+      </mat-form-field>
+
+      <p>to</p>
+
+      <mat-form-field>
+        <input matInput placeholder="Maximum" formControlName="maximum" />
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        class="nested-filter-button"
+        (click)="applyFilter()"
+      >
+        Submit
+      </button>
+
+      <p *ngIf="minimum.value === null && maximum.value === null">
+        Minimum and maximum values are null.
+      </p>
+    </div>
+  </mat-expansion-panel>
+</form>
